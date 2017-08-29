@@ -1,4 +1,4 @@
-package wendyfu.github.io.bakingapp;
+package io.github.wendyfu.bakingapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

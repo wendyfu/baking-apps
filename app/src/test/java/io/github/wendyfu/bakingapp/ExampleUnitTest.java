@@ -1,4 +1,4 @@
-package wendyfu.github.io.bakingapp;
+package io.github.wendyfu.bakingapp;
 
 import org.junit.Test;
 
