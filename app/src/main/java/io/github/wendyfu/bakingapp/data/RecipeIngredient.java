@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp;
+package io.github.wendyfu.bakingapp.data;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @since Aug 29, 2017.
  */
 
-public class RecipeIngredient {
+class RecipeIngredient {
 
     @SerializedName("quantity") private int quantity;
     @SerializedName("measure") private String measure;

@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RecipeListTitle" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorTransparentBlack</item>
+    </style>
 </resources>

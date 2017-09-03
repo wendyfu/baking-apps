@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp;
+package io.github.wendyfu.bakingapp.data;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @since Aug 29, 2017.
  */
 
-public class RecipeStep {
+class RecipeStep {
 
     @SerializedName("id") private int id;
     @SerializedName("shortDescription") private String shortDescription;
