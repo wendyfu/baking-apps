@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp.recipelist;
+package io.github.wendyfu.bakingapp.recipelist.presentation;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.wendyfu.bakingapp.R;
-import io.github.wendyfu.bakingapp.data.Recipe;
+import io.github.wendyfu.bakingapp.data.model.Recipe;
 
 /**
  * @author wendy

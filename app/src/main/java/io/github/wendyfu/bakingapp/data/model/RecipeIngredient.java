@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp.data;
+package io.github.wendyfu.bakingapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 

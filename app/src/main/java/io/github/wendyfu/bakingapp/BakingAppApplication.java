@@ -1,20 +1,32 @@
 package io.github.wendyfu.bakingapp;
 
-import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
-import io.github.wendyfu.bakingapp.di.AppComponent;
-import io.github.wendyfu.bakingapp.di.DaggerAppComponent;
+import android.app.Application;
+
+import io.github.wendyfu.bakingapp.di.components.ApplicationComponent;
+import io.github.wendyfu.bakingapp.di.components.DaggerApplicationComponent;
+import io.github.wendyfu.bakingapp.di.modules.ApplicationModule;
 
 /**
  * @author wendy
  * @since Sep 02, 2017.
  */
 
-public class BakingAppApplication extends DaggerApplication {
+public class BakingAppApplication extends Application {
 
-    @Override protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        AppComponent appComponent = DaggerAppComponent.builder().application(this).build();
-        appComponent.inject(this);
-        return appComponent;
+    private static ApplicationComponent applicationComponent;
+
+    @Override public void onCreate() {
+        super.onCreate();
+        initializeInjector();
+    }
+
+    private void initializeInjector() {
+        this.applicationComponent = DaggerApplicationComponent.builder()
+            .applicationModule(new ApplicationModule(this))
+            .build();
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
     }
 }

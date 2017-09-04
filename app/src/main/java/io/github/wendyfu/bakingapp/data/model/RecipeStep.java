@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp.data;
+package io.github.wendyfu.bakingapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -30,6 +30,8 @@ class RecipeStep {
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
+
+    ;
 
     public String getDescription() {
         return description;

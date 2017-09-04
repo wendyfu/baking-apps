@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp.recipelist;
+package io.github.wendyfu.bakingapp.recipelist.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,25 +12,22 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.support.DaggerFragment;
+import io.github.wendyfu.bakingapp.BaseFragment;
 import io.github.wendyfu.bakingapp.R;
-import io.github.wendyfu.bakingapp.di.ActivityScoped;
+import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 
-@ActivityScoped public class RecipeListFragment extends DaggerFragment
+public class RecipeListFragment extends BaseFragment
     implements RecipeListContract.View {
 
     @BindView(R.id.rv_recipe_list) RecyclerView rvRecipeList;
 
-    @Inject RecipeListContract.Presenter presenter;
+    @Inject RecipeListPresenter presenter;
 
     private RecipeListAdapter adapter;
 
-    @Inject public RecipeListFragment() {
-        super();
-    }
-
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getComponent(RecipeComponent.class).inject(this);
         adapter = new RecipeListAdapter(getContext());
     }
 

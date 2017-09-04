@@ -1,18 +1,18 @@
-package io.github.wendyfu.bakingapp.recipelist;
+package io.github.wendyfu.bakingapp.recipelist.presentation;
 
 import javax.inject.Inject;
+
+import io.github.wendyfu.bakingapp.di.ActivityScoped;
 
 /**
  * @author wendy
  * @since Sep 02, 2017.
  */
-
-class RecipeListPresenter implements RecipeListContract.Presenter {
+@ActivityScoped public class RecipeListPresenter implements RecipeListContract.Presenter {
 
     private RecipeListContract.View recipeListView;
 
     @Inject RecipeListPresenter() {
-        super();
     }
 
     @Override public void setView(RecipeListContract.View view) {

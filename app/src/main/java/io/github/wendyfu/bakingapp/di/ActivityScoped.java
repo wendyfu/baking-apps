@@ -1,9 +1,9 @@
 package io.github.wendyfu.bakingapp.di;
 
-import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Scope;
 
-@Documented @Scope @Retention(RetentionPolicy.RUNTIME) public @interface ActivityScoped { }
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+@Scope @Retention(RUNTIME) public @interface ActivityScoped { }

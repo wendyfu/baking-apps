@@ -1,6 +1,6 @@
 package io.github.wendyfu.bakingapp.data.source;
 
-import io.github.wendyfu.bakingapp.data.Recipe;
+import io.github.wendyfu.bakingapp.data.model.Recipe;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

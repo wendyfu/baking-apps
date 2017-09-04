@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp.recipelist;
+package io.github.wendyfu.bakingapp.recipelist.presentation;
 
 import io.github.wendyfu.bakingapp.BasePresenter;
 
