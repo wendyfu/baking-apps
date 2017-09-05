@@ -16,5 +16,7 @@ public interface RecipeListContract {
     interface Presenter extends BasePresenter<View> {
 
         @Override void setView(View view);
+
+        void getRecipeList();
     }
 }

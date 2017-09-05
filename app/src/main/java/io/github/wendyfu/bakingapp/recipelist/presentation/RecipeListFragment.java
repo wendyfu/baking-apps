@@ -35,13 +35,15 @@ public class RecipeListFragment extends BaseFragment
         Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, view);
+        presenter.setView(this);
         setupRecyclerView();
+        presenter.getRecipeList();
         return view;
     }
 
-    @Override public void onResume() {
-        super.onResume();
-        presenter.setView(this);
+    @Override public void onDestroy() {
+        super.onDestroy();
+        presenter.dropView();
     }
 
     private void setupRecyclerView() {

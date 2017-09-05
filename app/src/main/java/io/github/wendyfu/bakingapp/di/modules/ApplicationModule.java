@@ -2,11 +2,15 @@ package io.github.wendyfu.bakingapp.di.modules;
 
 import android.content.Context;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import io.github.wendyfu.bakingapp.BakingAppApplication;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author wendy
@@ -14,6 +18,9 @@ import io.github.wendyfu.bakingapp.BakingAppApplication;
  */
 
 @Module public class ApplicationModule {
+
+    public static final String NAME_SCHEDULER_IO = "schedulerIo";
+    public static final String NAME_UI_THREAD = "uiThread";
 
     private final BakingAppApplication application;
 
@@ -23,5 +30,13 @@ import io.github.wendyfu.bakingapp.BakingAppApplication;
 
     @Provides @Singleton Context provideApplicationContext() {
         return this.application;
+    }
+
+    @Provides @Singleton @Named(NAME_SCHEDULER_IO) public Scheduler provideSchedulerIo() {
+        return Schedulers.io();
+    }
+
+    @Provides @Singleton @Named(NAME_UI_THREAD) public Scheduler provideUiThread() {
+        return AndroidSchedulers.mainThread();
     }
 }

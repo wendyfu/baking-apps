@@ -1,8 +1,8 @@
 package io.github.wendyfu.bakingapp.data.source;
 
-import io.github.wendyfu.bakingapp.data.model.Recipe;
-import retrofit2.Call;
+import io.github.wendyfu.bakingapp.data.model.RecipeList;
 import retrofit2.http.GET;
+import rx.Observable;
 
 /**
  * @author wendy
@@ -11,5 +11,5 @@ import retrofit2.http.GET;
 
 public interface RecipeListService {
 
-    @GET("baking.json") Call<Recipe> getRecipeList();
+    @GET("baking.json") Observable<RecipeList> getRecipeList();
 }

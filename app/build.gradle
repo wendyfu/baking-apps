@@ -11,12 +11,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "RECIPE_LIST_API",
+            "\"https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/\"")
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
     }
 }
 
@@ -34,8 +40,12 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0'
     apt 'com.github.bumptech.glide:compiler:4.0.0'
 
+    compile 'io.reactivex:rxandroid:1.0.1'
+
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
 
     compile 'com.jakewharton:butterknife:8.8.1'
     apt 'com.jakewharton:butterknife-compiler:8.8.1'
