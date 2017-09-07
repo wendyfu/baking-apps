@@ -8,7 +8,7 @@ import dagger.Provides;
 import io.github.wendyfu.bakingapp.BuildConfig;
 import io.github.wendyfu.bakingapp.data.model.RecipeList;
 import io.github.wendyfu.bakingapp.data.model.deserializer.RecipeListDeserializer;
-import io.github.wendyfu.bakingapp.data.source.RecipeListService;
+import io.github.wendyfu.bakingapp.data.source.network.RecipeListService;
 import io.github.wendyfu.bakingapp.di.ActivityScoped;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

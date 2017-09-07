@@ -1,9 +1,5 @@
 package io.github.wendyfu.bakingapp.recipelist.presentation;
 
-import android.util.Log;
-
-import java.util.List;
-
 import javax.inject.Inject;
 
 import io.github.wendyfu.bakingapp.DefaultSubscriber;
@@ -33,15 +29,15 @@ import io.github.wendyfu.bakingapp.recipelist.domain.GetRecipeListUseCase;
     }
 
     @Override public void getRecipeList() {
-        getRecipeListUseCase.execute(new DefaultSubscriber<List<Recipe>>() {
-            @Override public void onNext(List<Recipe> recipes) {
-                super.onNext(recipes);
-                Log.d("WND", recipes.get(0).getName());
+        getRecipeListUseCase.execute(new DefaultSubscriber<Recipe>() {
+            @Override public void onNext(Recipe recipe) {
+                super.onNext(recipe);
+                recipeListView.addRecipeList(recipe);
             }
 
             @Override public void onError(Throwable e) {
                 super.onError(e);
-                Log.d("WND", e.getMessage());
+                recipeListView.showErrorGetRecipeList();
             }
         }, null);
     }

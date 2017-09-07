@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @since Aug 29, 2017.
  */
 
-class RecipeIngredient {
+public class RecipeIngredient {
 
     @SerializedName("quantity") private int quantity;
     @SerializedName("measure") private String measure;

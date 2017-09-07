@@ -21,17 +21,13 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
 
     private Context context;
     private List<Recipe> recipeList;
+    private OnClickListener listener;
 
-    RecipeListAdapter(Context context) {
+    RecipeListAdapter(Context context, OnClickListener listener) {
         super();
         this.context = context;
         this.recipeList = new ArrayList<>();
-        this.recipeList.add(new Recipe());
-        this.recipeList.add(new Recipe());
-        this.recipeList.add(new Recipe());
-        this.recipeList.add(new Recipe());
-        this.recipeList.add(new Recipe());
-        this.recipeList.add(new Recipe());
+        this.listener = listener;
     }
 
     @Override public RecipeListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,10 +37,19 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
 
     @Override public void onBindViewHolder(RecipeListViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
-        holder.bind(recipe, context);
+        holder.bind(recipe, listener, context);
     }
 
     @Override public int getItemCount() {
         return recipeList.size();
+    }
+
+    public void add(Recipe recipe) {
+        recipeList.add(recipe);
+    }
+
+    interface OnClickListener {
+
+        void click(Recipe recipe);
     }
 }

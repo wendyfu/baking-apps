@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @since Aug 29, 2017.
  */
 
-class RecipeStep {
+public class RecipeStep {
 
     @SerializedName("id") private int id;
     @SerializedName("shortDescription") private String shortDescription;

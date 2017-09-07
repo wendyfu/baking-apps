@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp.data.source;
+package io.github.wendyfu.bakingapp.data.source.network;
 
 import io.github.wendyfu.bakingapp.data.model.RecipeList;
 import retrofit2.http.GET;

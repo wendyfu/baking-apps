@@ -14,10 +14,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.wendyfu.bakingapp.BaseFragment;
 import io.github.wendyfu.bakingapp.R;
+import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 
 public class RecipeListFragment extends BaseFragment
-    implements RecipeListContract.View {
+    implements RecipeListContract.View, RecipeListAdapter.OnClickListener {
 
     @BindView(R.id.rv_recipe_list) RecyclerView rvRecipeList;
 
@@ -28,7 +29,7 @@ public class RecipeListFragment extends BaseFragment
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getComponent(RecipeComponent.class).inject(this);
-        adapter = new RecipeListAdapter(getContext());
+        adapter = new RecipeListAdapter(getContext(), this);
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,5 +50,17 @@ public class RecipeListFragment extends BaseFragment
     private void setupRecyclerView() {
         rvRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvRecipeList.setAdapter(adapter);
+    }
+
+    @Override public void click(Recipe recipe) {
+
+    }
+
+    @Override public void addRecipeList(Recipe recipe) {
+        adapter.add(recipe);
+    }
+
+    @Override public void showErrorGetRecipeList() {
+
     }
 }
