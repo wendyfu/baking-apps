@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp;
+package io.github.wendyfu.bakingapp.base.domain;
 
 import rx.Subscriber;
 

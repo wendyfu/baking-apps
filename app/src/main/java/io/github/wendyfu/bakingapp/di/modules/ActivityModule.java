@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import dagger.Module;
 import dagger.Provides;
-import io.github.wendyfu.bakingapp.BaseActivity;
+import io.github.wendyfu.bakingapp.base.presentation.BaseActivity;
 import io.github.wendyfu.bakingapp.di.ActivityScoped;
 
 /**

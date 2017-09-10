@@ -10,6 +10,13 @@
 
     <style name="RecipeListTitle" parent="TextAppearance.AppCompat.Headline">
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:background">@color/colorTransparentBlack</item>
+        <item name="android:background">@color/colorTransparentBlack35</item>
+    </style>
+
+    <style name="RecipeDetailTitle" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textColor">@color/colorBlack70</item>
+        <item name="android:paddingTop">@dimen/dimen_24dp</item>
+        <item name="android:paddingLeft">@dimen/dimen_24dp</item>
+        <item name="android:paddingRight">@dimen/dimen_24dp</item>
     </style>
 </resources>

@@ -1,0 +1,43 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="io.github.wendyfu.bakingapp.recipedetail.presentation.RecipeDetailFragment">
+
+        <TextView
+            style="@style/RecipeDetailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_recipe_servings"/>
+
+        <TextView
+            style="@style/RecipeDetailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen_24dp"
+            android:text="@string/text_recipe_ingredient"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recipe_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            style="@style/RecipeDetailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen_24dp"
+            android:text="@string/text_recipe_steps"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recipe_steps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

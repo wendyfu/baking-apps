@@ -1,6 +1,6 @@
 package io.github.wendyfu.bakingapp.recipelist.presentation;
 
-import io.github.wendyfu.bakingapp.BasePresenter;
+import io.github.wendyfu.bakingapp.base.presentation.BasePresenter;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
 
 /**

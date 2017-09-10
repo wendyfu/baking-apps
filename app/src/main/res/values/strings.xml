@@ -3,4 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_recipe_servings">Servings: </string>
+    <string name="text_recipe_ingredient">Ingredients</string>
+    <string name="text_recipe_steps">Steps</string>
 </resources>

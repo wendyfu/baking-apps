@@ -1,4 +1,4 @@
-package io.github.wendyfu.bakingapp;
+package io.github.wendyfu.bakingapp.base.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import io.github.wendyfu.bakingapp.BakingAppApplication;
 import io.github.wendyfu.bakingapp.di.components.ApplicationComponent;
 import io.github.wendyfu.bakingapp.di.modules.ActivityModule;
 

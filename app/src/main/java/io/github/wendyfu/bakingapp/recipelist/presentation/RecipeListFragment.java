@@ -1,5 +1,6 @@
 package io.github.wendyfu.bakingapp.recipelist.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,10 +14,11 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.github.wendyfu.bakingapp.BaseFragment;
 import io.github.wendyfu.bakingapp.R;
+import io.github.wendyfu.bakingapp.base.presentation.BaseFragment;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
+import io.github.wendyfu.bakingapp.recipedetail.presentation.RecipeDetailActivity;
 
 public class RecipeListFragment extends BaseFragment
     implements RecipeListContract.View, RecipeListAdapter.OnClickListener {
@@ -57,6 +59,7 @@ public class RecipeListFragment extends BaseFragment
     @Override public void onDestroy() {
         super.onDestroy();
         presenter.dropView();
+        rvRecipeList.setAdapter(null);
     }
 
     private void setupRecyclerView() {
@@ -78,7 +81,7 @@ public class RecipeListFragment extends BaseFragment
     }
 
     @Override public void click(Recipe recipe) {
-
+        startActivity(new Intent(getContext(), RecipeDetailActivity.class));
     }
 
     @Override public void addRecipeList(Recipe recipe) {

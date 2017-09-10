@@ -2,7 +2,7 @@ package io.github.wendyfu.bakingapp.recipelist.presentation;
 
 import javax.inject.Inject;
 
-import io.github.wendyfu.bakingapp.DefaultSubscriber;
+import io.github.wendyfu.bakingapp.base.domain.DefaultSubscriber;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.di.ActivityScoped;
 import io.github.wendyfu.bakingapp.recipelist.domain.GetRecipeListUseCase;

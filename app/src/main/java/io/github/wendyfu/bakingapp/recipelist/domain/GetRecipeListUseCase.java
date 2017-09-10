@@ -3,7 +3,7 @@ package io.github.wendyfu.bakingapp.recipelist.domain;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import io.github.wendyfu.bakingapp.UseCase;
+import io.github.wendyfu.bakingapp.base.domain.UseCase;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.data.model.RecipeList;
 import io.github.wendyfu.bakingapp.data.source.network.RecipeListService;
