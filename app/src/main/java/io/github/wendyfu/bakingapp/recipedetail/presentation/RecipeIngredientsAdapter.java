@@ -28,11 +28,6 @@ public class RecipeIngredientsAdapter
     @Inject public RecipeIngredientsAdapter(Context context) {
         this.context = context;
         this.ingredients = new ArrayList<>();
-        ingredients.add(new RecipeIngredient());
-        ingredients.add(new RecipeIngredient());
-        ingredients.add(new RecipeIngredient());
-        ingredients.add(new RecipeIngredient());
-        notifyDataSetChanged();
     }
 
     @Override
@@ -42,10 +37,15 @@ public class RecipeIngredientsAdapter
     }
 
     @Override public void onBindViewHolder(RecipeDetailViewHolder.Ingredient holder, int position) {
-        holder.bind(new RecipeIngredient());
+        holder.bind(context, ingredients.get(position));
     }
 
     @Override public int getItemCount() {
         return 5;
+    }
+
+    public void setIngredientData(List<RecipeIngredient> ingredients) {
+        this.ingredients = ingredients;
+        notifyDataSetChanged();
     }
 }

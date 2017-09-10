@@ -81,7 +81,8 @@ public class RecipeListFragment extends BaseFragment
     }
 
     @Override public void click(Recipe recipe) {
-        startActivity(new Intent(getContext(), RecipeDetailActivity.class));
+        Intent recipeDetailIntent = RecipeDetailActivity.getCallingIntent(getContext(), recipe);
+        startActivity(recipeDetailIntent);
     }
 
     @Override public void addRecipeList(Recipe recipe) {

@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.parceler.Parcels;
 
 import javax.inject.Inject;
 
@@ -13,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.wendyfu.bakingapp.R;
 import io.github.wendyfu.bakingapp.base.presentation.BaseFragment;
+import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 
 /**
@@ -22,9 +26,12 @@ import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 
 public class RecipeDetailFragment extends BaseFragment {
 
+    @BindView(R.id.text_servings) TextView textServings;
     @BindView(R.id.rv_recipe_ingredients) RecyclerView rvIngredients;
 
     @Inject RecipeIngredientsAdapter ingredientsAdapter;
+
+    private Recipe recipe;
 
     public RecipeDetailFragment() {
         setRetainInstance(true);
@@ -45,10 +52,21 @@ public class RecipeDetailFragment extends BaseFragment {
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (savedInstanceState == null) {
+            recipe = Parcels.unwrap(
+                getActivity().getIntent().getParcelableExtra(RecipeDetailActivity.BUNDLE_RECIPE));
+        }
+        showData(recipe);
     }
 
     private void setupIngredientRecyclerView() {
         rvIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
         rvIngredients.setAdapter(ingredientsAdapter);
+    }
+
+    private void showData(Recipe recipe) {
+        textServings.setText(
+            String.format(getString(R.string.text_recipe_servings), recipe.getServings()));
+        ingredientsAdapter.setIngredientData(recipe.getIngredients());
     }
 }

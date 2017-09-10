@@ -10,6 +10,7 @@
         tools:context="io.github.wendyfu.bakingapp.recipedetail.presentation.RecipeDetailFragment">
 
         <TextView
+            android:id="@+id/text_servings"
             style="@style/RecipeDetailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

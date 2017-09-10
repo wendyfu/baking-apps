@@ -3,7 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="text_recipe_servings">Servings: </string>
+    <string name="text_recipe_servings">Servings: %d</string>
     <string name="text_recipe_ingredient">Ingredients</string>
     <string name="text_recipe_steps">Steps</string>
+    <string name="text_recipe_quantity_measure" formatted="false">%s %s</string>
 </resources>

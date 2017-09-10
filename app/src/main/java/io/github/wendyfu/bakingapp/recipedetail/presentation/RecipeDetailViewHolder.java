@@ -1,5 +1,6 @@
 package io.github.wendyfu.bakingapp.recipedetail.presentation;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -26,9 +27,11 @@ public class RecipeDetailViewHolder {
             ButterKnife.bind(this, view);
         }
 
-        public void bind(RecipeIngredient recipeIngredient) {
-            textIngredientName.setText("KEMPEL");
-            textIngredientQtyMeasure.setText("KOPROT");
+        public void bind(Context context, RecipeIngredient recipeIngredient) {
+            textIngredientName.setText(recipeIngredient.getIngredient());
+            textIngredientQtyMeasure.setText(
+                String.format(context.getString(R.string.text_recipe_quantity_measure),
+                    String.valueOf(recipeIngredient.getQuantity()), recipeIngredient.getMeasure()));
         }
     }
 
