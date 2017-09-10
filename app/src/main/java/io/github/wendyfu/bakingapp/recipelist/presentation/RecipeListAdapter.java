@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.github.wendyfu.bakingapp.R;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
 
@@ -23,10 +25,13 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
     private List<Recipe> recipeList;
     private OnClickListener listener;
 
-    RecipeListAdapter(Context context, OnClickListener listener) {
+    @Inject RecipeListAdapter(Context context) {
         super();
         this.context = context;
         this.recipeList = new ArrayList<>();
+    }
+
+    public void setOnClickListener(OnClickListener listener) {
         this.listener = listener;
     }
 
@@ -46,6 +51,7 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
 
     public void add(Recipe recipe) {
         recipeList.add(recipe);
+        notifyItemInserted(recipeList.size() - 1);
     }
 
     interface OnClickListener {

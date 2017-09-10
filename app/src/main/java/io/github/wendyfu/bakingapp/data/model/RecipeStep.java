@@ -2,11 +2,14 @@ package io.github.wendyfu.bakingapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 /**
  * @author wendy
  * @since Aug 29, 2017.
  */
 
+@Parcel
 public class RecipeStep {
 
     @SerializedName("id") private int id;

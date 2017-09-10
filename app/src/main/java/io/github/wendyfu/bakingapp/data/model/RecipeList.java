@@ -1,5 +1,7 @@
 package io.github.wendyfu.bakingapp.data.model;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @since Sep 04, 2017.
  */
 
+@Parcel
 public class RecipeList {
 
     private List<Recipe> recipeList;

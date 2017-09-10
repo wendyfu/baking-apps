@@ -2,6 +2,8 @@ package io.github.wendyfu.bakingapp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import io.github.wendyfu.bakingapp.di.components.ApplicationComponent;
@@ -24,5 +26,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
+    }
+
+    protected void addFragment(int containerViewId, Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(containerViewId, fragment);
+        transaction.commit();
     }
 }

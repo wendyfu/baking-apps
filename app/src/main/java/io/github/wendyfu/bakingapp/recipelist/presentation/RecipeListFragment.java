@@ -2,6 +2,7 @@ package io.github.wendyfu.bakingapp.recipelist.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,26 +21,37 @@ import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 public class RecipeListFragment extends BaseFragment
     implements RecipeListContract.View, RecipeListAdapter.OnClickListener {
 
+    private static final int GRID_COL_COUNT_TABLET_PORTRAIT = 2;
+    private static final int GRID_COL_COUNT_TABLET_LANDSCAPE = 4;
+
     @BindView(R.id.rv_recipe_list) RecyclerView rvRecipeList;
 
     @Inject RecipeListPresenter presenter;
+    @Inject RecipeListAdapter adapter;
 
-    private RecipeListAdapter adapter;
+    public RecipeListFragment() {
+        setRetainInstance(true);
+    }
 
-    @Override public void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getComponent(RecipeComponent.class).inject(this);
-        adapter = new RecipeListAdapter(getContext(), this);
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, view);
-        presenter.setView(this);
         setupRecyclerView();
-        presenter.getRecipeList();
         return view;
+    }
+
+    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.setView(this);
+        if (savedInstanceState == null) {
+            presenter.getRecipeList();
+        }
     }
 
     @Override public void onDestroy() {
@@ -48,7 +60,20 @@ public class RecipeListFragment extends BaseFragment
     }
 
     private void setupRecyclerView() {
-        rvRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
+        boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+        boolean isLandscape = getResources().getBoolean(R.bool.isLandscape);
+
+        if (isTablet && !isLandscape) {
+            rvRecipeList.setLayoutManager(
+                new GridLayoutManager(getContext(), GRID_COL_COUNT_TABLET_PORTRAIT));
+        } else if (isTablet && isLandscape) {
+            rvRecipeList.setLayoutManager(
+                new GridLayoutManager(getContext(), GRID_COL_COUNT_TABLET_LANDSCAPE));
+        } else {
+            rvRecipeList.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
+
+        adapter.setOnClickListener(this);
         rvRecipeList.setAdapter(adapter);
     }
 

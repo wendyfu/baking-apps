@@ -7,7 +7,6 @@ import io.github.wendyfu.bakingapp.R;
 import io.github.wendyfu.bakingapp.di.HasComponent;
 import io.github.wendyfu.bakingapp.di.components.DaggerRecipeComponent;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
-import io.github.wendyfu.bakingapp.util.ActivityUtil;
 
 public class RecipeListActivity extends BaseActivity implements HasComponent<RecipeComponent> {
 
@@ -17,14 +16,12 @@ public class RecipeListActivity extends BaseActivity implements HasComponent<Rec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.initializeInjector();
+        this.initializeActivity(savedInstanceState);
+    }
 
-        RecipeListFragment recipeListFragment =
-            (RecipeListFragment) getSupportFragmentManager().findFragmentById(R.id.frame_fragment);
-        if (recipeListFragment == null) {
-            recipeListFragment = new RecipeListFragment();
-            ActivityUtil.addFragmentToActivity(getSupportFragmentManager(), recipeListFragment,
-                R.id.frame_fragment);
-        }
+    private void initializeActivity(Bundle savedInstanceState) {
+        if (savedInstanceState != null) return;
+        addFragment(R.id.frame_fragment, new RecipeListFragment());
     }
 
     public void initializeInjector() {
