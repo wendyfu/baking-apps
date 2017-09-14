@@ -9,6 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.wendyfu.bakingapp.R;
 import io.github.wendyfu.bakingapp.data.model.RecipeIngredient;
+import io.github.wendyfu.bakingapp.data.model.RecipeStep;
 
 /**
  * @author wendy
@@ -31,15 +32,23 @@ public class RecipeDetailViewHolder {
             textIngredientName.setText(recipeIngredient.getIngredient());
             textIngredientQtyMeasure.setText(
                 String.format(context.getString(R.string.text_recipe_quantity_measure),
-                    String.valueOf(recipeIngredient.getQuantity()), recipeIngredient.getMeasure()));
+                    recipeIngredient.getQuantity(), recipeIngredient.getMeasure()));
         }
     }
 
-    public class Steps extends RecyclerView.ViewHolder {
+    public static class Steps extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.text_step_short_desc) TextView textStepShortDescription;
 
         public Steps(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+
+        public void bind(Context context, RecipeStep recipeStep) {
+            textStepShortDescription.setText(
+                String.format(context.getString(R.string.text_recipe_step_number),
+                    recipeStep.getId() + 1, recipeStep.getShortDescription()));
         }
     }
 }

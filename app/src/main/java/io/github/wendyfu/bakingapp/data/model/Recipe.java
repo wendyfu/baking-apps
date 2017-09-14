@@ -14,13 +14,13 @@ import java.util.List;
 @Parcel
 public class Recipe {
 
-    @SerializedName("id") private int id;
-    @SerializedName("name") private String name;
-    @SerializedName("servings") private int servings;
-    @SerializedName("image") private String image;
+    @SerializedName("id") int id;
+    @SerializedName("name") String name;
+    @SerializedName("servings") int servings;
+    @SerializedName("image") String image;
 
-    private List<RecipeIngredient> ingredients;
-    private List<RecipeStep> steps;
+    List<RecipeIngredient> ingredients;
+    List<RecipeStep> steps;
 
     public int getId() {
         return id;

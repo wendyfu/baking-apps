@@ -52,6 +52,7 @@ public class RecipeDetailActivity extends BaseActivity implements HasComponent<R
         }
 
         getSupportActionBar().setTitle(recipe.getName());
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override public RecipeComponent getComponent() {

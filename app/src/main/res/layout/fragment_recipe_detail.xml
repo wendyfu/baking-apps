@@ -32,7 +32,7 @@
             style="@style/RecipeDetailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dimen_24dp"
+            android:paddingBottom="@dimen/dimen_8dp"
             android:text="@string/text_recipe_steps"/>
 
         <android.support.v7.widget.RecyclerView

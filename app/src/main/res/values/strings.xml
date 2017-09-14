@@ -7,4 +7,5 @@
     <string name="text_recipe_ingredient">Ingredients</string>
     <string name="text_recipe_steps">Steps</string>
     <string name="text_recipe_quantity_measure" formatted="false">%s %s</string>
+    <string name="text_recipe_step_number" formatted="false">%d. %s</string>
 </resources>

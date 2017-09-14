@@ -12,11 +12,11 @@ import org.parceler.Parcel;
 @Parcel
 public class RecipeStep {
 
-    @SerializedName("id") private int id;
-    @SerializedName("shortDescription") private String shortDescription;
-    @SerializedName("description") private String description;
-    @SerializedName("videoURL") private String videoUrl;
-    @SerializedName("thumbnailURL") private String thumbnailUrl;
+    @SerializedName("id") int id;
+    @SerializedName("shortDescription") String shortDescription;
+    @SerializedName("description") String description;
+    @SerializedName("videoURL") String videoUrl;
+    @SerializedName("thumbnailURL") String thumbnailUrl;
 
     public int getId() {
         return id;

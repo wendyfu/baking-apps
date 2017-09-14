@@ -12,15 +12,15 @@ import org.parceler.Parcel;
 @Parcel
 public class RecipeIngredient {
 
-    @SerializedName("quantity") private int quantity;
-    @SerializedName("measure") private String measure;
-    @SerializedName("ingredient") private String ingredient;
+    @SerializedName("quantity") String quantity;
+    @SerializedName("measure") String measure;
+    @SerializedName("ingredient") String ingredient;
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

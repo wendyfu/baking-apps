@@ -10,21 +10,22 @@
     android:paddingTop="@dimen/dimen_4dp">
 
     <TextView
-        android:id="@+id/text_ingredient"
+        android:id="@+id/text_quantity_measure"
         style="@style/TextAppearance.AppCompat.Body2"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/ingredient_recipe_list_width"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlack70"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/text_quantity_measure"
+        android:id="@+id/text_ingredient"
         style="@style/TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlack70"
+        app:layout_constraintLeft_toRightOf="@+id/text_quantity_measure"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_ingredient"/>
+        app:layout_constraintTop_toTopOf="@id/text_quantity_measure"/>
 
 </android.support.constraint.ConstraintLayout>

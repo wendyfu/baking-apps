@@ -8,4 +8,5 @@
     <dimen name="dimen_24dp">24dp</dimen>
 
     <dimen name="cardview_recipe_list_height">240dp</dimen>
+    <dimen name="ingredient_recipe_list_width">80dp</dimen>
 </resources>
