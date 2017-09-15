@@ -3,10 +3,12 @@ package io.github.wendyfu.bakingapp.widget.presentation.view;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 
@@ -39,6 +41,8 @@ public class SimpleRecipeWidgetConfigurationActivity extends BaseActivity
     RecipeListAdapter.OnClickListener {
 
     @BindView(R.id.rv_recipe_list) RecyclerView rvRecipeList;
+    @BindView(R.id.container) CoordinatorLayout coordinatorLayout;
+
     @Inject RecipeListAdapter recipeListAdapter;
     @Inject SimpleRecipeWidgetPresenter presenter;
     private ActivityComponent activityComponent;
@@ -116,7 +120,6 @@ public class SimpleRecipeWidgetConfigurationActivity extends BaseActivity
                 String.format(getString(R.string.text_widget_ingredient), ingredient.getQuantity(),
                     ingredient.getMeasure(), ingredient.getIngredient()));
         }
-        Log.d("WND", stringBuilder.toString());
         return stringBuilder.toString();
     }
 
@@ -125,6 +128,14 @@ public class SimpleRecipeWidgetConfigurationActivity extends BaseActivity
     }
 
     @Override public void showErrorGetRecipeList() {
-
+        Snackbar snackbar = Snackbar.make(coordinatorLayout,
+            getResources().getString(R.string.text_error_recipe_list), Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(getResources().getString(R.string.text_retry),
+            new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    presenter.getRecipeList();
+                }
+            });
+        snackbar.show();
     }
 }

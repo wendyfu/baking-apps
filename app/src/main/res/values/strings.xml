@@ -8,4 +8,6 @@
     <string name="text_recipe_step_pages" formatted="false">Step %d of %d</string>
     <string name="text_widget_configuration_activity_title">Simple Recipe Widget</string>
     <string name="text_widget_ingredient" formatted="false">\u2022 %s %s %s\n</string>
+    <string name="text_retry">Retry</string>
+    <string name="text_error_recipe_list">Error retrieving recipe list</string>
 </resources>

@@ -3,6 +3,8 @@ package io.github.wendyfu.bakingapp.recipelist.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +28,7 @@ import static io.github.wendyfu.bakingapp.data.Constant.GRID_COL_COUNT_TABLET_PO
 public class RecipeListFragment extends BaseFragment
     implements RecipeListContract.View, RecipeListAdapter.OnClickListener {
 
+    @BindView(R.id.container) CoordinatorLayout coordinatorLayout;
     @BindView(R.id.rv_recipe_list) RecyclerView rvRecipeList;
 
     @Inject RecipeListPresenter presenter;
@@ -90,6 +93,14 @@ public class RecipeListFragment extends BaseFragment
     }
 
     @Override public void showErrorGetRecipeList() {
-
+        final Snackbar snackbar = Snackbar.make(coordinatorLayout,
+            getResources().getString(R.string.text_error_recipe_list), Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(getResources().getString(R.string.text_retry),
+            new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    presenter.getRecipeList();
+                }
+            });
+        snackbar.show();
     }
 }
