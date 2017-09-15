@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Baking Time</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_recipe_servings">Servings: %d</string>
     <string name="text_recipe_ingredient">Ingredients</string>
     <string name="text_recipe_steps">Steps</string>
     <string name="text_recipe_quantity_measure" formatted="false">%s %s</string>
     <string name="text_recipe_step_number" formatted="false">%d. %s</string>
     <string name="text_recipe_step_pages" formatted="false">Step %d of %d</string>
+    <string name="text_widget_configuration_activity_title">Simple Recipe Widget</string>
+    <string name="text_widget_ingredient" formatted="false">\u2022 %s %s %s\n</string>
 </resources>

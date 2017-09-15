@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import dagger.Component;
 import io.github.wendyfu.bakingapp.di.ActivityScoped;
 import io.github.wendyfu.bakingapp.di.modules.ActivityModule;
+import io.github.wendyfu.bakingapp.widget.presentation.view.SimpleRecipeWidgetConfigurationActivity;
 
 /**
  * @author wendy
@@ -13,7 +14,9 @@ import io.github.wendyfu.bakingapp.di.modules.ActivityModule;
 
 @ActivityScoped
 @Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class})
-interface ActivityComponent {
+public interface ActivityComponent {
 
     AppCompatActivity activity();
+
+    void inject(SimpleRecipeWidgetConfigurationActivity simpleRecipeWidgetConfigurationActivity);
 }

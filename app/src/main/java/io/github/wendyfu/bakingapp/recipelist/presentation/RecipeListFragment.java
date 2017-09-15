@@ -20,11 +20,11 @@ import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 import io.github.wendyfu.bakingapp.recipedetail.presentation.RecipeDetailActivity;
 
+import static io.github.wendyfu.bakingapp.data.Constant.GRID_COL_COUNT_TABLET_LANDSCAPE;
+import static io.github.wendyfu.bakingapp.data.Constant.GRID_COL_COUNT_TABLET_PORTRAIT;
+
 public class RecipeListFragment extends BaseFragment
     implements RecipeListContract.View, RecipeListAdapter.OnClickListener {
-
-    private static final int GRID_COL_COUNT_TABLET_PORTRAIT = 2;
-    private static final int GRID_COL_COUNT_TABLET_LANDSCAPE = 4;
 
     @BindView(R.id.rv_recipe_list) RecyclerView rvRecipeList;
 

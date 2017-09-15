@@ -12,7 +12,7 @@ import java.util.List;
 @Parcel
 public class RecipeList {
 
-    private List<Recipe> recipeList;
+    List<Recipe> recipeList;
 
     public List<Recipe> getRecipeList() {
         return recipeList;

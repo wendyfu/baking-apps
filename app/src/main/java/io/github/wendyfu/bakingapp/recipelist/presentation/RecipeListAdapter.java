@@ -19,7 +19,7 @@ import io.github.wendyfu.bakingapp.data.model.Recipe;
  * @since Aug 29, 2017.
  */
 
-class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
+public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
 
     private Context context;
     private List<Recipe> recipeList;
@@ -54,7 +54,7 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecipeListViewHolder> {
         notifyItemInserted(recipeList.size() - 1);
     }
 
-    interface OnClickListener {
+    public interface OnClickListener {
 
         void click(Recipe recipe);
     }

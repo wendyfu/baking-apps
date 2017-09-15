@@ -21,6 +21,21 @@
         </activity>
         <activity android:name=".recipedetail.presentation.RecipeDetailActivity"/>
         <activity android:name=".recipestep.RecipeStepActivity"/>
+        <activity android:name=".widget.presentation.view.SimpleRecipeWidgetConfigurationActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".widget.SimpleRecipeWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/simple_recipe_widget_info"/>
+        </receiver>
+
     </application>
 
 </manifest>
