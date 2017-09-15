@@ -10,9 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.github.wendyfu.bakingapp.R;
 import io.github.wendyfu.bakingapp.data.model.RecipeStep;
+
+import static io.github.wendyfu.bakingapp.di.modules.ActivityModule.ACTIVITY_CONTEXT;
 
 /**
  * @author wendy
@@ -23,8 +26,9 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeDetailViewHol
 
     private Context context;
     private List<RecipeStep> steps;
+    private OnClickListener listener;
 
-    @Inject public RecipeStepsAdapter(Context context) {
+    @Inject public RecipeStepsAdapter(@Named(ACTIVITY_CONTEXT) Context context) {
         this.context = context;
         this.steps = new ArrayList<>();
     }
@@ -36,15 +40,24 @@ public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeDetailViewHol
     }
 
     @Override public void onBindViewHolder(RecipeDetailViewHolder.Steps holder, int position) {
-        holder.bind(context, steps.get(position));
+        holder.bind(context, steps.get(position), listener);
     }
 
     @Override public int getItemCount() {
         return steps.size();
     }
 
+    public void setListener(OnClickListener listener) {
+        this.listener = listener;
+    }
+
     public void setStepsData(List<RecipeStep> steps) {
         this.steps = steps;
         notifyDataSetChanged();
+    }
+
+    interface OnClickListener {
+
+        void onClick(RecipeStep recipeStep);
     }
 }

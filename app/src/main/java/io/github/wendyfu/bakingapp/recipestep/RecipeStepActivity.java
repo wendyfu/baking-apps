@@ -1,8 +1,9 @@
-package io.github.wendyfu.bakingapp.recipedetail.presentation;
+package io.github.wendyfu.bakingapp.recipestep;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import org.parceler.Parcels;
 
@@ -14,26 +15,28 @@ import io.github.wendyfu.bakingapp.di.components.DaggerRecipeComponent;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 
 import static io.github.wendyfu.bakingapp.data.Constant.BUNDLE_RECIPE;
+import static io.github.wendyfu.bakingapp.data.Constant.BUNDLE_STEP_ID;
 
 /**
  * @author wendy
- * @since Sep 10, 2017.
+ * @since Sep 14, 2017.
  */
 
-public class RecipeDetailActivity extends BaseActivity implements HasComponent<RecipeComponent> {
+public class RecipeStepActivity extends BaseActivity implements HasComponent<RecipeComponent> {
 
     private RecipeComponent recipeComponent;
     private Recipe recipe;
 
-    public static Intent getCallingIntent(Context context, Recipe recipe) {
-        Intent intent = new Intent(context, RecipeDetailActivity.class);
+    public static Intent getCallingIntent(Context context, int stepId, Recipe recipe) {
+        Intent intent = new Intent(context, RecipeStepActivity.class);
+        intent.putExtra(BUNDLE_STEP_ID, stepId);
         intent.putExtra(BUNDLE_RECIPE, Parcels.wrap(recipe));
         return intent;
     }
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_detail);
+        setContentView(R.layout.activity_recipe_step);
         this.initializeInjector();
         this.initializeActivity(savedInstanceState);
     }
@@ -45,7 +48,7 @@ public class RecipeDetailActivity extends BaseActivity implements HasComponent<R
 
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            addFragment(R.id.frame_fragment, new RecipeDetailFragment());
+            addFragment(R.id.frame_fragment, new RecipeStepFragment());
             recipe = Parcels.unwrap(getIntent().getParcelableExtra(BUNDLE_RECIPE));
         } else {
             recipe = Parcels.unwrap(savedInstanceState.getParcelable(BUNDLE_RECIPE));

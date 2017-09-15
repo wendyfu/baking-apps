@@ -57,6 +57,8 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.11'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
+    compile 'com.google.android.exoplayer:exoplayer:r2.5.2'
+
     testCompile 'junit:junit:4.12'
     androidTestCompile "com.google.code.findbugs:jsr305:3.0.1"
 }

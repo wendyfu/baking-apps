@@ -3,6 +3,7 @@ package io.github.wendyfu.bakingapp.recipedetail.presentation;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -38,6 +39,7 @@ public class RecipeDetailViewHolder {
 
     public static class Steps extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.layout_step_container) LinearLayout container;
         @BindView(R.id.text_step_short_desc) TextView textStepShortDescription;
 
         public Steps(View view) {
@@ -45,10 +47,16 @@ public class RecipeDetailViewHolder {
             ButterKnife.bind(this, view);
         }
 
-        public void bind(Context context, RecipeStep recipeStep) {
+        public void bind(Context context, final RecipeStep recipeStep,
+            final RecipeStepsAdapter.OnClickListener listener) {
             textStepShortDescription.setText(
                 String.format(context.getString(R.string.text_recipe_step_number),
                     recipeStep.getId() + 1, recipeStep.getShortDescription()));
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    listener.onClick(recipeStep);
+                }
+            });
         }
     }
 }

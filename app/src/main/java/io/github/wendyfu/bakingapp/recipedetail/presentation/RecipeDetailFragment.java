@@ -18,16 +18,20 @@ import butterknife.ButterKnife;
 import io.github.wendyfu.bakingapp.R;
 import io.github.wendyfu.bakingapp.base.presentation.BaseFragment;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
+import io.github.wendyfu.bakingapp.data.model.RecipeStep;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
+import io.github.wendyfu.bakingapp.recipestep.RecipeStepActivity;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
+import static io.github.wendyfu.bakingapp.data.Constant.BUNDLE_RECIPE;
 
 /**
  * @author wendy
  * @since Sep 10, 2017.
  */
 
-public class RecipeDetailFragment extends BaseFragment {
+public class RecipeDetailFragment extends BaseFragment
+    implements RecipeStepsAdapter.OnClickListener {
 
     @BindView(R.id.text_servings) TextView textServings;
     @BindView(R.id.rv_recipe_ingredients) RecyclerView rvIngredients;
@@ -59,10 +63,11 @@ public class RecipeDetailFragment extends BaseFragment {
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState == null) {
-            recipe = Parcels.unwrap(
-                getActivity().getIntent().getParcelableExtra(RecipeDetailActivity.BUNDLE_RECIPE));
+            recipe = Parcels.unwrap(getActivity().getIntent().getParcelableExtra(BUNDLE_RECIPE));
+            showData(recipe);
         }
-        showData(recipe);
+        textServings.setText(
+            String.format(getString(R.string.text_recipe_servings), recipe.getServings()));
     }
 
     private void setupIngredientRecyclerView() {
@@ -73,13 +78,17 @@ public class RecipeDetailFragment extends BaseFragment {
     private void setupStepRecyclerView() {
         rvSteps.setLayoutManager(new LinearLayoutManager(getContext()));
         rvSteps.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
+        stepsAdapter.setListener(this);
         rvSteps.setAdapter(stepsAdapter);
     }
 
     private void showData(Recipe recipe) {
-        textServings.setText(
-            String.format(getString(R.string.text_recipe_servings), recipe.getServings()));
         ingredientsAdapter.setIngredientData(recipe.getIngredients());
         stepsAdapter.setStepsData(recipe.getSteps());
+    }
+
+    @Override public void onClick(RecipeStep recipeStep) {
+        startActivity(
+            RecipeStepActivity.getCallingIntent(getContext(), recipeStep.getId(), recipe));
     }
 }

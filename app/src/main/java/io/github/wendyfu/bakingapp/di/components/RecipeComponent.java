@@ -6,6 +6,7 @@ import io.github.wendyfu.bakingapp.di.modules.ActivityModule;
 import io.github.wendyfu.bakingapp.di.modules.RecipeModule;
 import io.github.wendyfu.bakingapp.recipedetail.presentation.RecipeDetailFragment;
 import io.github.wendyfu.bakingapp.recipelist.presentation.RecipeListFragment;
+import io.github.wendyfu.bakingapp.recipestep.RecipeStepFragment;
 
 /**
  * @author wendy
@@ -19,4 +20,6 @@ import io.github.wendyfu.bakingapp.recipelist.presentation.RecipeListFragment;
     void inject(RecipeListFragment recipeListFragment);
 
     void inject(RecipeDetailFragment recipeDetailFragment);
+
+    void inject(RecipeStepFragment recipeStepFragment);
 }
