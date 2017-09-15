@@ -48,8 +48,10 @@ public class RecipeStepActivity extends BaseActivity implements HasComponent<Rec
 
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            addFragment(R.id.frame_fragment, new RecipeStepFragment());
             recipe = Parcels.unwrap(getIntent().getParcelableExtra(BUNDLE_RECIPE));
+            int stepId = getIntent().getIntExtra(BUNDLE_STEP_ID, 0);
+            addFragment(R.id.frame_fragment,
+                RecipeStepFragment.newInstance(stepId, recipe.getSteps()));
         } else {
             recipe = Parcels.unwrap(savedInstanceState.getParcelable(BUNDLE_RECIPE));
         }

@@ -34,4 +34,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         transaction.add(containerViewId, fragment);
         transaction.commit();
     }
+
+    protected void replaceFragment(int containerViewId, Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(containerViewId, fragment);
+        transaction.commit();
+    }
 }

@@ -1,5 +1,6 @@
 package io.github.wendyfu.bakingapp.recipedetail.presentation;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,7 +21,6 @@ import io.github.wendyfu.bakingapp.base.presentation.BaseFragment;
 import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.data.model.RecipeStep;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
-import io.github.wendyfu.bakingapp.recipestep.RecipeStepActivity;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 import static io.github.wendyfu.bakingapp.data.Constant.BUNDLE_RECIPE;
@@ -40,10 +40,18 @@ public class RecipeDetailFragment extends BaseFragment
     @Inject RecipeIngredientsAdapter ingredientsAdapter;
     @Inject RecipeStepsAdapter stepsAdapter;
 
+    private OnClickListener listener;
     private Recipe recipe;
 
     public RecipeDetailFragment() {
         setRetainInstance(true);
+    }
+
+    @Override public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnClickListener) {
+            this.listener = (OnClickListener) context;
+        }
     }
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -88,7 +96,11 @@ public class RecipeDetailFragment extends BaseFragment
     }
 
     @Override public void onClick(RecipeStep recipeStep) {
-        startActivity(
-            RecipeStepActivity.getCallingIntent(getContext(), recipeStep.getId(), recipe));
+        listener.onStepClick(recipeStep.getId());
+    }
+
+    interface OnClickListener {
+
+        void onStepClick(int stepId);
     }
 }

@@ -12,6 +12,8 @@ import io.github.wendyfu.bakingapp.data.model.Recipe;
 import io.github.wendyfu.bakingapp.di.HasComponent;
 import io.github.wendyfu.bakingapp.di.components.DaggerRecipeComponent;
 import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
+import io.github.wendyfu.bakingapp.recipestep.RecipeStepActivity;
+import io.github.wendyfu.bakingapp.recipestep.RecipeStepFragment;
 
 import static io.github.wendyfu.bakingapp.data.Constant.BUNDLE_RECIPE;
 
@@ -20,7 +22,8 @@ import static io.github.wendyfu.bakingapp.data.Constant.BUNDLE_RECIPE;
  * @since Sep 10, 2017.
  */
 
-public class RecipeDetailActivity extends BaseActivity implements HasComponent<RecipeComponent> {
+public class RecipeDetailActivity extends BaseActivity
+    implements HasComponent<RecipeComponent>, RecipeDetailFragment.OnClickListener {
 
     private RecipeComponent recipeComponent;
     private Recipe recipe;
@@ -45,8 +48,15 @@ public class RecipeDetailActivity extends BaseActivity implements HasComponent<R
 
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            addFragment(R.id.frame_fragment, new RecipeDetailFragment());
-            recipe = Parcels.unwrap(getIntent().getParcelableExtra(BUNDLE_RECIPE));
+            if (getResources().getBoolean(R.bool.isTablet)) {
+                recipe = Parcels.unwrap(getIntent().getParcelableExtra(BUNDLE_RECIPE));
+                addFragment(R.id.fragment_step, new RecipeDetailFragment());
+                addFragment(R.id.fragment_step_detail,
+                    RecipeStepFragment.newInstance(0, recipe.getSteps()));
+            } else {
+                addFragment(R.id.frame_fragment, new RecipeDetailFragment());
+                recipe = Parcels.unwrap(getIntent().getParcelableExtra(BUNDLE_RECIPE));
+            }
         } else {
             recipe = Parcels.unwrap(savedInstanceState.getParcelable(BUNDLE_RECIPE));
         }
@@ -64,5 +74,14 @@ public class RecipeDetailActivity extends BaseActivity implements HasComponent<R
             .applicationComponent(getApplicationComponent())
             .activityModule(getActivityModule())
             .build();
+    }
+
+    @Override public void onStepClick(int stepId) {
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            replaceFragment(R.id.fragment_step_detail,
+                RecipeStepFragment.newInstance(stepId, recipe.getSteps()));
+        } else {
+            startActivity(RecipeStepActivity.getCallingIntent(this, stepId, recipe));
+        }
     }
 }
