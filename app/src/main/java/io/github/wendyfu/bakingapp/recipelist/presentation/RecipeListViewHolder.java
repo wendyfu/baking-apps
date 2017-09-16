@@ -34,8 +34,10 @@ class RecipeListViewHolder extends RecyclerView.ViewHolder {
         Context context) {
         txtRecipeName.setText(recipe.getName());
 
-        if (recipe.getImage() != null) {
+        if (recipe.getImage() == null || recipe.getImage().isEmpty()) {
             Glide.with(context).load(R.drawable.img_default_recipe).into(imgRecipe);
+        } else {
+            Glide.with(context).load(recipe.getImage()).into(imgRecipe);
         }
 
         if (listener != null) {
