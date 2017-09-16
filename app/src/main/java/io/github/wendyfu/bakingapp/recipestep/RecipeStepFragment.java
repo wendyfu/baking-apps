@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,6 +44,7 @@ import io.github.wendyfu.bakingapp.di.components.RecipeComponent;
 public class RecipeStepFragment extends BaseFragment {
 
     @BindView(R.id.exoview_step) SimpleExoPlayerView simpleExoPlayerView;
+    @BindView(R.id.container_video_not_available) FrameLayout containerVideoNotAvailableText;
     @Nullable @BindView(R.id.text_step_description) TextView textStepDesc;
     @Nullable @BindView(R.id.text_step_page) TextView textStepPage;
     @Nullable @BindView(R.id.step_nav_container) LinearLayout navigator;
@@ -88,8 +90,7 @@ public class RecipeStepFragment extends BaseFragment {
     }
 
     private void showData(int stepId, List<RecipeStep> steps) {
-        Uri videoUri = Uri.parse(steps.get(stepId).getVideoUrl());
-        setupVideoPlayer(videoUri);
+        setupVideoPlayer(steps.get(stepId).getVideoUrl());
 
         boolean isPhone = !getResources().getBoolean(R.bool.isTablet);
         boolean isLand = getResources().getBoolean(R.bool.isLandscape);
@@ -100,7 +101,14 @@ public class RecipeStepFragment extends BaseFragment {
             String.format(getString(R.string.text_recipe_step_pages), stepId + 1, steps.size()));
     }
 
-    private void setupVideoPlayer(Uri videoUri) {
+    private void setupVideoPlayer(String videoUriString) {
+        if (videoUriString == null || videoUriString.isEmpty()) {
+            containerVideoNotAvailableText.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        containerVideoNotAvailableText.setVisibility(View.GONE);
+        Uri videoUri = Uri.parse(videoUriString);
         bandwidthMeter = new DefaultBandwidthMeter();
 
         TrackSelection.Factory adaptiveTrackSelectionFactory =
