@@ -90,7 +90,11 @@ public class RecipeStepFragment extends BaseFragment {
     }
 
     private void showData(int stepId, List<RecipeStep> steps) {
-        setupVideoPlayer(steps.get(stepId).getVideoUrl());
+        String videoUrlString =
+            (steps.get(stepId).getVideoUrl().isEmpty() ? steps.get(stepId).getThumbnailUrl()
+                : steps.get(stepId).getVideoUrl());
+
+        setupVideoPlayer(videoUrlString);
 
         boolean isPhone = !getResources().getBoolean(R.bool.isTablet);
         boolean isLand = getResources().getBoolean(R.bool.isLandscape);
