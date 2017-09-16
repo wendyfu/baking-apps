@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -59,6 +60,7 @@ public class RecipeStepFragment extends BaseFragment {
 
     public RecipeStepFragment() {
         setRetainInstance(true);
+        clearResumePosition();
     }
 
     public static RecipeStepFragment newInstance(int stepId, List<RecipeStep> steps) {
@@ -108,6 +110,13 @@ public class RecipeStepFragment extends BaseFragment {
 
         MediaSource mediaSource = buildMediaSource(videoUri);
         simpleExoPlayerView.setPlayer(player);
+
+        boolean haveResumePosition = resumeWindow != C.INDEX_UNSET;
+        if (haveResumePosition) {
+            player.seekTo(resumeWindow, resumePosition);
+        }
+
+        player.setPlayWhenReady(true);
         player.prepare(mediaSource);
     }
 
@@ -124,6 +133,16 @@ public class RecipeStepFragment extends BaseFragment {
             new DefaultExtractorsFactory(), null, null);
     }
 
+    private void updateResumePosition() {
+        resumeWindow = player.getCurrentWindowIndex();
+        resumePosition = Math.max(0, player.getContentPosition());
+    }
+
+    private void clearResumePosition() {
+        resumeWindow = C.INDEX_UNSET;
+        resumePosition = C.TIME_UNSET;
+    }
+
     @Override public void onResume() {
         super.onResume();
         showData(stepId, steps);
@@ -133,6 +152,7 @@ public class RecipeStepFragment extends BaseFragment {
         super.onPause();
         if (player != null) {
             player.release();
+            updateResumePosition();
         }
     }
 
@@ -141,6 +161,7 @@ public class RecipeStepFragment extends BaseFragment {
         stepId -= 1;
         if (player != null) {
             player.release();
+            clearResumePosition();
         }
         showData(stepId, steps);
     }
@@ -150,6 +171,7 @@ public class RecipeStepFragment extends BaseFragment {
         stepId += 1;
         if (player != null) {
             player.release();
+            clearResumePosition();
         }
         showData(stepId, steps);
     }
