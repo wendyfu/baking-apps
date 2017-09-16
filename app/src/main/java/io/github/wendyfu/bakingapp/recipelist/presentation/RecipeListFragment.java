@@ -1,5 +1,6 @@
 package io.github.wendyfu.bakingapp.recipelist.presentation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,8 +35,17 @@ public class RecipeListFragment extends BaseFragment
     @Inject RecipeListPresenter presenter;
     @Inject RecipeListAdapter adapter;
 
+    private OnCompletedListener listener;
+
     public RecipeListFragment() {
         setRetainInstance(true);
+    }
+
+    @Override public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnCompletedListener) {
+            this.listener = (OnCompletedListener) context;
+        }
     }
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +102,10 @@ public class RecipeListFragment extends BaseFragment
         adapter.add(recipe);
     }
 
+    @Override public void finishGetAllRecipeList() {
+        listener.onCompleted();
+    }
+
     @Override public void showErrorGetRecipeList() {
         final Snackbar snackbar = Snackbar.make(coordinatorLayout,
             getResources().getString(R.string.text_error_recipe_list), Snackbar.LENGTH_INDEFINITE);
@@ -102,5 +116,10 @@ public class RecipeListFragment extends BaseFragment
                 }
             });
         snackbar.show();
+    }
+
+    interface OnCompletedListener {
+
+        void onCompleted();
     }
 }

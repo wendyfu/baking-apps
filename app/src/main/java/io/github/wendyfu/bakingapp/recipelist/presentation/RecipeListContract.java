@@ -14,6 +14,8 @@ public interface RecipeListContract {
 
         void addRecipeList(Recipe recipe);
 
+        void finishGetAllRecipeList();
+
         void showErrorGetRecipeList();
     }
 

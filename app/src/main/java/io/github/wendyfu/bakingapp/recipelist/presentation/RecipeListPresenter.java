@@ -39,6 +39,11 @@ import io.github.wendyfu.bakingapp.recipelist.domain.GetRecipeListUseCase;
                 super.onError(e);
                 recipeListView.showErrorGetRecipeList();
             }
+
+            @Override public void onCompleted() {
+                super.onCompleted();
+                recipeListView.finishGetAllRecipeList();
+            }
         }, null);
     }
 }
