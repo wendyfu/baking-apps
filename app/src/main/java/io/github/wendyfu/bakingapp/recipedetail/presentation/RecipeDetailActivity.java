@@ -3,6 +3,7 @@ package io.github.wendyfu.bakingapp.recipedetail.presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import org.parceler.Parcels;
 
@@ -62,7 +63,12 @@ public class RecipeDetailActivity extends BaseActivity
         }
 
         getSupportActionBar().setTitle(recipe.getName());
-        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override public RecipeComponent getComponent() {

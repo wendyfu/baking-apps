@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.MenuItem;
 
 import org.parceler.Parcels;
 
@@ -36,6 +37,7 @@ public class RecipeStepActivity extends BaseActivity implements HasComponent<Rec
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_recipe_step);
         this.initializeInjector();
         this.initializeActivity(savedInstanceState);
@@ -56,8 +58,17 @@ public class RecipeStepActivity extends BaseActivity implements HasComponent<Rec
             recipe = Parcels.unwrap(savedInstanceState.getParcelable(BUNDLE_RECIPE));
         }
 
+        boolean isPhone = !getResources().getBoolean(R.bool.isTablet);
+        boolean isLand = getResources().getBoolean(R.bool.isLandscape);
+        if (isPhone && isLand) return;
+
         getSupportActionBar().setTitle(recipe.getName());
-        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override public RecipeComponent getComponent() {

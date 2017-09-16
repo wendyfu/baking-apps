@@ -20,7 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".recipedetail.presentation.RecipeDetailActivity"/>
-        <activity android:name=".recipestep.RecipeStepActivity"/>
+        <activity
+            android:name=".recipestep.RecipeStepActivity"
+            android:theme="@style/PlayerTheme"/>
         <activity android:name=".widget.presentation.view.SimpleRecipeWidgetConfigurationActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
