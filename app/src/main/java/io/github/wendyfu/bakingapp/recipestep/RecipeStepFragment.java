@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -45,6 +47,7 @@ public class RecipeStepFragment extends BaseFragment {
 
     @BindView(R.id.exoview_step) SimpleExoPlayerView simpleExoPlayerView;
     @BindView(R.id.container_video_not_available) FrameLayout containerVideoNotAvailableText;
+    @Nullable @BindView(R.id.image_recipe_step_thumbnail) ImageView recipeStepThumbnail;
     @Nullable @BindView(R.id.text_step_description) TextView textStepDesc;
     @Nullable @BindView(R.id.text_step_page) TextView textStepPage;
     @Nullable @BindView(R.id.step_nav_container) LinearLayout navigator;
@@ -103,6 +106,14 @@ public class RecipeStepFragment extends BaseFragment {
         textStepDesc.setText(steps.get(stepId).getDescription());
         textStepPage.setText(
             String.format(getString(R.string.text_recipe_step_pages), stepId + 1, steps.size()));
+
+        String thumbnail = steps.get(stepId).getThumbnailUrl();
+        if (thumbnail == null || thumbnail.isEmpty()) {
+            recipeStepThumbnail.setVisibility(View.GONE);
+        } else {
+            Glide.with(this).load(Uri.parse(thumbnail)).into(recipeStepThumbnail);
+            recipeStepThumbnail.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setupVideoPlayer(String videoUriString) {

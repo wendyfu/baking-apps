@@ -34,6 +34,16 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/image_recipe_step_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/dimen_24dp"
+        android:paddingRight="@dimen/dimen_24dp"/>
+
     <TextView
         android:id="@+id/text_step_description"
         android:layout_width="match_parent"
